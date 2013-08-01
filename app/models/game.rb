@@ -1,9 +1,10 @@
 class Game
 
-  attr_reader :teams, :date
+  attr_reader :home_team, :away_team, :date
 
   def initialize(hash)
-    @teams = hash[:teams]
+    @home_team = hash[:home_team]
+    @away_team = hash[:away_team]
     @date = hash[:date]
   end
 
