@@ -8,4 +8,5 @@ class GameTest < MiniTest::Unit::TestCase
     assert_equal('away', g.away_team)
     assert_equal('1999', g.date)
   end
+
 end

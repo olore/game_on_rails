@@ -33,4 +33,4 @@ group :doc do
 end
 
 gem 'nokogiri'
-
+gem 'mocha', :require => false
