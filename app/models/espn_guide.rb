@@ -10,10 +10,10 @@ class ESPNGuide
 
   def games_for(station)
     games = []
-    @doc.xpath("//table/tr[td//text()[contains(., '#{station}')]]").each do |thing|
-      date_time = thing.at_xpath('td[1]').text
-      teams = thing.at_xpath('td[2]').text
-      away, home = parse_home_away_teams(teams)
+    @doc.xpath("//table/tr[td//text()[contains(., '#{station}')]]").each do |row|
+      date_time   = row.at_xpath('td[1]').text
+      teams       = row.at_xpath('td[2]').text
+      away, home  = parse_home_away_teams(teams)
 
       games << Game.new(:date => date_time, :home_team => home, :away_team => away)
     end
