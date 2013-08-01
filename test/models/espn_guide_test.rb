@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class GameOnTest < MiniTest::Unit::TestCase #Test::Unit::TestCase
+class GameOnTest < MiniTest::Unit::TestCase
   def setup
     @espn_doc = parse_espn_doc
   end

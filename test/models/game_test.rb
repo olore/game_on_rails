@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class GameTest < MiniTest::Unit::TestCase #Test::Unit::TestCase
+class GameTest < MiniTest::Unit::TestCase
 
   def test_game
     g = Game.new(:home_team => 'home', :away_team => 'away', :date => '1999')
