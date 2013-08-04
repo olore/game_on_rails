@@ -11,6 +11,7 @@ end
 
 group :production do
   gem 'pg'
+  gem 'rails_12factor'            # https://devcenter.heroku.com/articles/rails-integration-gems 
 end
 
 # Use SCSS for stylesheets
