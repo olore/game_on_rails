@@ -6,7 +6,7 @@ gem 'sqlite3'
 gem 'nokogiri'
 gem 'mocha', :require => false
 
-group :production
+group :production do
   gem 'pg'
 end
 
