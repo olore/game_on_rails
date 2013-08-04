@@ -1,5 +1,5 @@
-game_on_cordova
-===============
+game_on_rails
+=============
 
 is the game on?
 
