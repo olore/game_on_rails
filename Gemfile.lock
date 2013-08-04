@@ -59,6 +59,7 @@ GEM
     multi_json (1.7.7)
     nokogiri (1.6.0)
       mini_portile (~> 0.5.0)
+    pg (0.14.1)
     polyglot (0.3.3)
     rack (1.5.2)
     rack-test (0.6.2)
@@ -120,6 +121,7 @@ DEPENDENCIES
   jquery-rails
   mocha
   nokogiri
+  pg
   rails (= 4.0.0)
   sass-rails (~> 4.0.0)
   sdoc
