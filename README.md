@@ -5,7 +5,7 @@ is the game on?
 
 This is the server-side component of the game_on_cordova app. It will provide schedule information in JSON format to the app.
 
-
+http://game-on-rails.herokuapp.com/
 
 To Do
 =====
