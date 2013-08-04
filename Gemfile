@@ -1,10 +1,13 @@
 source 'https://rubygems.org'
-ruby '1.9.3'
+ruby '2.0.0'
 
 gem 'rails', '4.0.0'
-gem 'sqlite3'
 gem 'nokogiri'
 gem 'mocha', :require => false
+
+group :development, :test do
+  gem 'sqlite3'
+end
 
 group :production do
   gem 'pg'
