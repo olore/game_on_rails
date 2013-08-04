@@ -1,10 +1,10 @@
 source 'https://rubygems.org'
+ruby '2.0.0'
 
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
-
-# Use sqlite3 as the database for Active Record
 gem 'sqlite3'
+gem 'nokogiri'
+gem 'mocha', :require => false
 
 group :production
   gem 'pg'
@@ -36,5 +36,3 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-gem 'nokogiri'
-gem 'mocha', :require => false
