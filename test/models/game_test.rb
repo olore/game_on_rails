@@ -3,10 +3,12 @@ require 'test_helper'
 class GameTest < MiniTest::Unit::TestCase
 
   def test_game
-    g = Game.new(:home_team => 'home', :away_team => 'away', :date => '1999')
+    date = Date.parse('August 1, 2013')
+    g = Game.create!(home_team: 'home', away_team: 'away', date: date, station: 'MLBN')
     assert_equal('home', g.home_team)
     assert_equal('away', g.away_team)
-    assert_equal('1999', g.date)
+    assert_equal('MLBN', g.station)
+    assert_equal(date, g.date)
   end
 
 end
