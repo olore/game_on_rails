@@ -30,7 +30,10 @@ class ESPNGuide
       away, home  = parse_home_away_teams(teams)
 
       station = row.at_xpath('td[3]').text
-      games << Game.new(:date => date_time, :home_team => home, :away_team => away, :station => station)
+      games << Game.create!(:date => date_time,
+                            :home_team => home,
+                            :away_team => away,
+                            :station => station)
     end
     games
   end
@@ -57,6 +60,7 @@ class ESPNGuide
   def date_to_str(date)
     date.strftime('%B %-d')
   end
+
 end
 
 

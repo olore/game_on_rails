@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  home_team: MyString
+  away_team: MyString
+  date: 2013-11-22 22:19:42
+  station: MyString
+
+two:
+  home_team: MyString
+  away_team: MyString
+  date: 2013-11-22 22:19:42
+  station: MyString
