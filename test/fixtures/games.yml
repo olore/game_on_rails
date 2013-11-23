@@ -1,13 +1,19 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  home_team: MyString
-  away_team: MyString
-  date: 2013-11-22 22:19:42
-  station: MyString
+  home_team: Houston
+  away_team: Atlanta
+  date: 2013-07-23 07:05:00
+  station: MLBN
 
 two:
-  home_team: MyString
-  away_team: MyString
-  date: 2013-11-22 22:19:42
-  station: MyString
+  home_team: Boston
+  away_team: NY Yankees
+  date: 2013-07-22 07:05:00
+  station: FOX
+
+three:
+  home_team: Boston
+  away_team: NY Yankees
+  date: 2013-07-24 07:05:00
+  station: MLBN
