@@ -8,4 +8,6 @@ GameOn::Application.routes.draw do
 
   get 'games/date/:date',       to: 'games#for_date',     defaults: { format: 'json' }
   get 'games/station/:station', to: 'games#for_station',  defaults: { format: 'json' }
+
+  get 'games/generate', to: 'games#generate'
 end

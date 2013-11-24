@@ -10,12 +10,6 @@ class ESPNGuideTest < MiniTest::Unit::TestCase
     guide = ESPNGuide.new
   end
 
-  def test_initialize
-    guide = ESPNGuide.new(@espn_doc)
-    games = guide.games_for('MLBN')
-    assert_equal 11, games.length
-  end
-
   def test_parse_date
     guide = ESPNGuide.allocate
     str = "August 1, 7:05 PM ET"
@@ -32,20 +26,6 @@ class ESPNGuideTest < MiniTest::Unit::TestCase
     guide = ESPNGuide.allocate
     str = guide.date_to_str(Date.parse('August 1, 7:05 PM ET'))
     assert_equal expected, str
-  end
-
-  def test_games_at_date_for_games_on_the_first_of_the_month
-    guide = ESPNGuide.new(@espn_doc)
-    games = guide.games_at(Date.parse('August 1, 2013'))
-    assert_equal 1, games.length
-    assert_equal 'MLBN', games.first.station
-  end
-
-
-  def test_games_at_date
-    guide = ESPNGuide.new(@espn_doc)
-    games = guide.games_at(Date.parse('August 3, 2013'))
-    assert_equal 3, games.length
   end
 
   def test_game_parses_home_and_away_teams
@@ -70,6 +50,16 @@ class ESPNGuideTest < MiniTest::Unit::TestCase
     away, home = guide.parse_home_away_teams(teams)
     assert_equal("Baltimore", home)
     assert_equal("Boston", away)
+  end
+
+  def test_collects_all_oddrow_and_evenrow_trs
+    Game.destroy_all
+    g = ESPNGuide.new(@espn_doc)
+    g.generate
+    assert_equal 35, Game.count
+    g = Game.all.order(:date)
+    assert_equal Time.parse('2013-07-31 19:00 EDT'), g.first.date.to_time
+    assert_equal Time.parse('2013-09-29 13:35 EDT'), g.last.date.to_time
   end
 
   private

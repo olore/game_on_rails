@@ -12,6 +12,16 @@ class GamesController < ApplicationController
     respond_with games
   end
 
+
+  def generate
+    ESPNGuide.generate
+    render :text => "Generated #{Game.count} games."
+  end
+
+  def clear
+    Game.destroy_all
+  end
+
   private
 
 end

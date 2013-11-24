@@ -2,41 +2,41 @@ require 'open-uri'
 
 class ESPNGuide
   STATIONS = %w( MLBN FOX TBS ESPN )
-  URL = 'http://espn.go.com/mlb/television'
-
-  def initialize(doc = nil)
-    @doc = doc || Nokogiri::HTML(open(URL))
+  if Rails.env.development?
+    URL = 'http://localhost:3000/espn.go.com-mlb-television.html'
+  else
+   #URL = 'http://espn.go.com/mlb/television'
+    URL = 'http://game-on-rails.herokuapp.com/espn.go.com-mlb-television.html'
   end
 
-  def games_for(station)
-    parse_games_for(station)
-  end
+  def self.generate(doc = nil)
+    doc = doc || Nokogiri::HTML(open(URL))
 
-  def games_at(date)
-    date_str = "#{date_to_str(date)},"
-    parse_games_for(date_str)
-  end
-  
+    trs = doc.xpath("//table/tr[contains(@class,'evenrow')]")
+    trs += doc.xpath("//table/tr[contains(@class,'oddrow')]")
+    trs.each do |tr|
+      date_td     = tr.at_xpath('td[1]').text
+      date_time   = parse_date(date_td)
 
+      teams_td    = tr.at_xpath('td[2]').text
+      next if teams_td.match(/at/)
+      away, home  = parse_home_away_teams(teams_td)
 
-  #private ?
-  
-  def parse_games_for(str)
-    games = []
-    @doc.xpath("//table/tr[td//text()[contains(., '#{str}')]]").each do |row|
-      date_time   = parse_date(row.at_xpath('td[1]').text)
+      station    = tr.at_xpath('td[3]').text
+      if img_alt = tr.at_xpath('td[3]/img/@alt')
+        station =  img_alt.value
+      end
+      next if station.blank? || station == 'Postponed'
 
-      teams       = row.at_xpath('td[2]').text
-      away, home  = parse_home_away_teams(teams)
-
-      station = row.at_xpath('td[3]').text
-      games << Game.create!(date:      date_time,
-                            home_team: home,
-                            away_team: away,
-                            station:   station)
+      Game.create!(date:      date_time,
+                   home_team: home,
+                   away_team: away,
+                   station:   station)
     end
-    games
   end
+
+
+  #private?
 
   def parse_home_away_teams(teams)
     if teams =~ /<a href/
